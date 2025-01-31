@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .choices img {
+            width: 100px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        <div class="choices">
+            <img src="C:\Users\GANAVI J\Downloads\rock.jpg" alt="Rock" id="rock">
+            <img src="C:\Users\GANAVI J\Downloads\papper.jpg" alt="Paper" id="paper">
+            <img src="C:\Users\GANAVI J\Downloads\scissors.jpg" alt="Scissors" id="scissors">
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        const choices = ["rock", "paper", "scissors"];
+        const results = document.getElementById("result");
+
+        document.querySelectorAll(".choices img").forEach(img => {
+            img.addEventListener("click", () => {
+                const userChoice = img.id;
+                const computerChoice = choices[Math.floor(Math.random() * 3)];
+                const result = determineWinner(userChoice, computerChoice);
+                results.textContent = `You chose ${userChoice}. Computer chose ${computerChoice}. ${result}`;
+            });
+        });
+
+        function determineWinner(user, computer) {
+            if (user === computer) return "It's a draw!";
+            if ((user === "rock" && computer === "scissors") || 
+                (user === "scissors" && computer === "paper") || 
+                (user === "paper" && computer === "rock")) return "You win!";
+            return "You lose!";
+        }
+    </script>
+</body>
+</html>
